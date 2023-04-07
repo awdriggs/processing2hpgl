@@ -1,4 +1,4 @@
-package template.library;
+package processing2hpgl;
 
 
 import processing.core.*;
@@ -18,7 +18,8 @@ public class HelloLibrary {
 	
 	// myParent is a reference to the parent sketch
 	PApplet myParent;
-
+	PVector test;
+	
 	int myVariable = 0;
 	
 	public final static String VERSION = "##library.prettyVersion##";
@@ -39,11 +40,13 @@ public class HelloLibrary {
 	
 	private void welcome() {
 		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
+		
 	}
 	
 	
-	public String sayHello() {
-		return "hello library.";
+	public String sayHello(String name) {
+		
+		return "hello " + name;
 	}
 	/**
 	 * return the version of the Library.

@@ -1,4 +1,4 @@
-## How to install ##library.name##
+## How to install processing2hpgl 
 
 ### Install with the Contribution Manager
 
@@ -14,7 +14,7 @@ By default the following locations are used for your sketchbook folder:
   * For Mac users, the sketchbook folder is located inside `~/Documents/Processing` 
   * For Windows users, the sketchbook folder is located inside `My Documents/Processing`
 
-Download ##library.name## from ##library.url##
+Download processing2hpgl from https://github.com/awdriggs/processing2hpgl 
 
 Unzip and copy the contributed Library's folder into the `libraries` folder in the Processing sketchbook. You will need to create this `libraries` folder if it does not exist.
 
@@ -23,16 +23,16 @@ The folder structure for Library ##library.name## should be as follows:
 ```
 Processing
   libraries
-    ##library.name##
+    processing2hpgl 
       examples
       library
-        ##library.name##.jar
+      processing2hpgl.jar
       reference
       src
 ```
              
-Some folders like `examples` or `src` might be missing. After Library ##library.name## has been successfully installed, restart the Processing application.
+Some folders like `examples` or `src` might be missing. After Library processing2hpgl has been successfully installed, restart the Processing application.
 
 ### Troubleshooting
 
-If you're having trouble, have a look at the [Processing Wiki](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library) for more information, or contact the author [##author.name##](##author.url##).
+If you're having trouble, have a look at the [Processing Wiki](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library) for more information, or contact the author [adam driggers](https://github.com/awdriggs).
