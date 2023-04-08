@@ -17,20 +17,26 @@ import java.util.ArrayList; // import the ArrayList class
 public class Plotter {
   // myParent is a reference to the parent sketch
   PApplet myParent;
-  public final static String VERSION = "##library.prettyVersion##";
+  public final static String VERSION = "v1"; //version number
 
-  boolean DEBUG; //for deugging
+  boolean DEBUG; //for debugging
 
   //class properties
   Serial port;
   int xMin, yMin, xMax, yMax;
-  float scale; //this is used to stay in porportion with proceessing
+  float scale; //this is used to stay in proportion with processing
 
   /**
-   * Plotter Constructor,
+   * Plotter Constructor, setup the 
    *
-   * @example plotTest
    * @param theParent the parent PApplet
+   * @param _port the serial port for the printer
+   * @param _xMin the minimum x position for the plotter
+   * @param _yMin the minimum y position for the plotter
+   * @param _xMax the maximum x position for the plotter
+   * @param _yMax the maximum y postion for the plotter
+   * @param _scale the scale factor for the printer
+   * @param _debug a boolean, true will print a bunch of helpful messages.
    */
   public Plotter(PApplet theParent, Serial _port,  int _xMin, int _yMin, int _xMax, int _yMax, float _scale, boolean _debug) {
     port = _port;
@@ -45,6 +51,7 @@ public class Plotter {
   }
 
   /**
+   * Send any hpgl command to the printer
    *
    * @param hpgl the string to send to the plotter
    */
@@ -52,14 +59,29 @@ public class Plotter {
     port.write(hpgl);
   }
 
+  /**
+   * converts any pixel value to a plot value 
+   *
+   * @return a float value scaled to the printer's number system 
+   */
   private float convert(float value) { //convert pixel value to plot value
     return value * scale;
   }
 
+  /**
+   * given a x pixel value, will return a plotter scaled x value 
+   *
+   * @return a float value scaled to the printer's number system 
+   */
   private float convertX(float value) { //convert pixel x value to plot x value
     return convert(value)+xMin;
   }
 
+  /**
+   * given a y pixel value, will return a plotter scaled y value 
+   *
+   * @return a float value scaled to the printer's number system 
+   */
   private float convertY(float value) { //convert pixel y value to plot y value
     return convert(value)+yMin;
   }
@@ -68,7 +90,7 @@ public class Plotter {
 
   /**
    *
-   * @param selectPen which pen? an int between 0 and 6
+   * @param slot which pen? an int between 0 and 6
    */
   public void selectPen(int slot) {
     if (slot >= 0 && slot <= 6 ) {
@@ -124,6 +146,7 @@ public class Plotter {
   /**
    * Set the Fill Type, 1 or 2
    * @param model Fill model, 1 or 2
+   * @return a string of hpgl commands for fills
    */
   public String fillType(int model){ //fill type 1 or 2, solid fill based on specified pen thickness
     String statement = "FT"+model+";";
@@ -135,6 +158,7 @@ public class Plotter {
    * @param model 3 or 4
    * @param space The spacing of the fill
    * @param angle the angle of the fil
+   * @return a string of hpgl commands for fills
    */
   public String fillType(int model, float space, float angle){ //fill type 3(hatching) or 4(crosshatch),
     String statement = "FT" + model + "," + convert(space) + "," + angle +";";
@@ -271,8 +295,9 @@ public class Plotter {
 
   /**
    * Fill a circle at x an y, filltype 1 or 2
-   * @param x the x point for the circle
-   * @param y the y point for the circle
+   * @param _x the x point for the circle
+   * @param _y the y point for the circle
+   * @param diam the diameter of the circle
    * @param model the fill type, 1 or 2
    */
   public void fillCircle(float _x, float _y, float diam, int model) {
@@ -292,6 +317,7 @@ public class Plotter {
    * Fill a circle at x an y, filltype 1 or 2
    * @param _x the x point for the circle
    * @param _y the y point for the circle
+   * @param diam the diameter of the circle
    * @param model the fill type, 3 or 4
    * @param space the spacing of the fill
    * @param angle the angle of the fill
@@ -649,6 +675,7 @@ public class Plotter {
    * @param text The text to write
    * @param _x The x location of the label
    * @param _y The y location of the label
+   * @param _size The the textsize of the label 
    */
   public void label(String text, float _x, float _y, float _size){
     System.out.println(_x);
